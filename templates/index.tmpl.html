@@ -1,0 +1,34 @@
+<html>
+  {{template "header.tmpl.html"}}
+<body>
+  {{template "nav.tmpl.html"}}
+
+<div class="jumbotron text-center">
+  <div class="container">
+    <h1>Welcome to Panoptes.</h1>
+      <p>This is the web endpoint for DPI data submitted to Panoptes. Your can use a simple JSON API to submit packets obtained from libprotoident and nDPI.</p>
+  </div>
+</div>
+<div class="container">
+	  <hr/>
+      <h3><span class="glyphicon glyphicon-info-sign"></span> Data ingestion API reference</h3>
+	  <p><code><b>POST</b> https://calm-reef-40637.herokuapp.com/ingest/packet</code></p>
+	  <pre>
+  {
+    "NodeIP": "192.168.0.2",
+    "NodeID": "listener1",
+    "Tool": "libprotoident",
+    "SourceIP": "208.67.32.43",
+    "SourcePort": 443,
+    "DestinationIP": "192.168.0.6",
+    "DestinationPort": 23143,
+    "Type": "HTTPS"
+  }</pre>
+  <p>The server will reply with <code>{"STATUS":"OK"}</code> or <code>{"STATUS":"ERR"}</code>.</p>
+  <p>The following is an example call using <b>curl</b>:</p>
+	  <pre>curl -v -X POST https://calm-reef-40637.herokuapp.com/ingest/packet -H 'content-type: application/json' -d '{"NodeIP":"192.168.0.2","NodeID":"listener1","Tool":"libprotoident","SourceIP":"208.67.32.43","SourcePort":443,"DestinationIP":"192.168.0.6","DestinationPort":23143,"Type":"HTTPS"}'</pre>
+	  <p>&nbsp;</p>
+</div>
+
+</body>
+</html>
